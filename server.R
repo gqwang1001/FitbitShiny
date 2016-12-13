@@ -1,4 +1,3 @@
-
 library(shiny)
 
 devtools::install_github("actcool","junruidi")
