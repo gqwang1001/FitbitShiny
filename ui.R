@@ -4,7 +4,7 @@ library(shiny)
 shinyUI(fluidPage(
   
   # Application title or header
-  titlePanel(title = h4("Analysis of fitbit data",align="center")),
+  titlePanel(title = h4("Analysis of Activity Count Data",align="center")),
   sidebarLayout(
     # siderbar panel
     sidebarPanel(

@@ -5,6 +5,7 @@ library(actcool)
 library(accelerometry)
 library(dplyr)
 
+
 shinyServer(function(input, output) {
    
   data = reactive({
@@ -39,26 +40,30 @@ shinyServer(function(input, output) {
   output$sum = renderTable({
     if(is.null(data())){return()}
     selected = selct(data = data(),
-                  id = as.numeric(input$ID), 
-                  day = as.numeric(input$Day))
-    flag.selected = WNW(x = selected)
+                   id = as.numeric(input$ID), 
+                   day = as.numeric(input$Day))
+     flag.selected = WNW(x = selected)
     accelsummary(x=selected, w= flag.selected,h=input$threshold)
   })
   
-  output$downloadflagbutton = renderUI({
-    if(is.null(data())){return()}
-    downloadButton('downloadflag',label = "Download Flag")
-  })
 # download
   output$downloadflag <- downloadHandler(
     filename = function() {
       paste0('flag_data_ID', input$ID,'_Day',input$Day, '.csv')
     },
     content = function(con) {
+      selected = selct(data = data(),
+                       id = as.numeric(input$ID), 
+                       day = as.numeric(input$Day))
+      flag.selected = WNW(x = selected)
       write.csv(flag.selected, con)
     }
   )
   
+  output$downloadflagbutton = renderUI({
+    if(is.null(data())){return()}
+    downloadButton('downloadflag',label = "Download Flag")
+  })
 
   
 # plot  
