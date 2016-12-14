@@ -13,8 +13,10 @@ shinyUI(fluidPage(
       bootstrapPage(
       div(style = "display:block",uiOutput("idchoices")),
       div(style = "display:block",uiOutput("daychoices")),
-      div(style = "display:block", uiOutput("threshold"))
-      ) 
+      div(style = "display:block", uiOutput("threshold")),
+      div(style = "display:block", uiOutput("downloadflagbutton"))     
+      )
+      
       # conditionalPanel(condition = "input.tabselected==3",
       #                  #fileInput("file","Please upload your file"),
       #                  tags$hr(),

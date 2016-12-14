@@ -45,6 +45,22 @@ shinyServer(function(input, output) {
     accelsummary(x=selected, w= flag.selected,h=input$threshold)
   })
   
+  output$downloadflagbutton = renderUI({
+    if(is.null(data())){return()}
+    downloadButton('downloadflag',label = "Download Flag")
+  })
+# download
+  output$downloadflag <- downloadHandler(
+    filename = function() {
+      paste0('flag_data_ID', input$ID,'_Day',input$Day, '.csv')
+    },
+    content = function(con) {
+      write.csv(flag.selected, con)
+    }
+  )
+  
+
+  
 # plot  
   output$plot <- renderPlot({
     if(is.null(data())){return()}
